@@ -1,0 +1,14 @@
+<% if flash[:notice] %>
+  <% flash[:notice].each do |note| %>
+    <p id="notice"><%= note %></p>  
+  <% end %>
+<% end %>
+<h1> <%=session[:name]%> </h1>
+<form action="/update" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="patch">
+    Email:<input type=text name=email value="<%=@user.email%>">
+    Name:<input type=text name=name value="<%=@user.name%>">
+    <input type=submit name=Update value=Update>
+</form>
+<a href='/destroy' data-method="delete">Delete Account</a>

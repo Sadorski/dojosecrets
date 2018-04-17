@@ -1,0 +1,15 @@
+<div>
+    <% if flash[:notice] %>
+        <% flash[:notice].each do |note| %>
+            <p id="notice"><%= note %></p>  
+        <% end %>
+    <% end %>
+    <form action="/users/new" method="POST">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        Email:<input type="text" name="email">
+        Name:<input type="text" name="name">
+        Password:<input type=password name="password">
+        Confirm Password:<input type=password name="confirmation">
+        <input type=submit name=Join value=Join>
+    </form>
+</div>
