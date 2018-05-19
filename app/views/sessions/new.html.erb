@@ -11,3 +11,10 @@
         <input type=submit name=submit value=submit>
     </form>
 </div>
+
+
+<td>  <a href="/events/<%=event.id>%>/edit">Edit</a> |  <a href="/events/<%=event.id>%>/destroy" data-method="delete">Delete</a></td>
+        <% elsif event.attended.exists?(current_user.id) %>
+        <td> Joining <a href="/events/<%=event.id%>/cancel" data-method="delete">Cancel</a> </td>
+        <% else %>
+        <td> <a href="/events/<%=event.id%>/join" data-method="patch">Join</a> </td>

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  get 'secrets/index'
+
+  get 'likes/create'
+
+  get 'likes/destroy'
 
   get 'users/new'
 
@@ -20,6 +23,16 @@ Rails.application.routes.draw do
   patch 'update' => 'users#update'
 
   delete 'destroy' => 'users#destroy'
+
+  post 'secrets' => 'users#secret'
+
+  get 'secrets' => 'secrets#index'
+
+  delete 'delsecret' => 'users#delsecret'
+  
+  post 'like' => 'likes#create'
+
+  post 'unlike' => 'likes#destroy'
 
 
 

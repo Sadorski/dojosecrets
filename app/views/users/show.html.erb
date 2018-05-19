@@ -1,3 +1,19 @@
-<h1><%=session[:name]%></h1>
-<a class=btn href="/users/<%=session[:id]%>/edit">Edit Profile</a>
+<h1><%=@user.name%></h1>
+<a class=btn href="/users/<%=@user.id%>/edit">Edit Profile</a>
 <a class=btn href="/logout">Log Out</a>
+<h2>Enter a new Secret</h2>
+<form action="/secrets" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type=text name=content>
+    <input class=btn type=submit name=submit value="Create Secret">
+</form>
+<% @secrets.each do |secret| %>
+<%= secret.content %>
+<form method="post" action="/delsecret">
+  <input type="hidden" name="_method" value="delete">
+  <input type="hidden" name=secretid value="<%=secret.id%>">
+  <input type="submit" value="Delete Secret">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+</form>
+<% end %>
+

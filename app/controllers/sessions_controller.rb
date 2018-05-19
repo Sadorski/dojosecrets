@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login, only: [:new, :login]
   def new
       # render login page
   end
@@ -21,8 +22,5 @@ class SessionsController < ApplicationController
       session[:name] = nil
       redirect_to '/sessions/new'
   end
-  private
-    def user_params
-      params.require(:user).permit(:email, :password)
-    end
+  
 end
